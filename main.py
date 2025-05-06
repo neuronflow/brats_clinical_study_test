@@ -1,7 +1,8 @@
 from nifti_conversion import niftiConvert
 
 from auxiliary.turbopath import turbopath
-
+from auxiliary.io import read_image
+from auxiliary.conversion import nifti_to_dicom_itk
 
 # TODO first we define directories
 # DCM sources
@@ -52,15 +53,31 @@ T1C_NII_segmentation_file = turbopath("TODO")
 T2W_NII_segmentation_file = turbopath("TODO")
 T2F_NII_segmentation_file = turbopath("TODO")
 
-# we can now pick random dcm files from the directories to extract the original metadata
-T1N_DCM_reference_file = T1N_DCM_DIR.files("*.dcm")[0]
-T1C_DCM_reference_file = T1C_DCM_DIR.files("*.dcm")[0]
-T2W_DCM_reference_file = T2W_DCM_DIR.files("*.dcm")[0]
-T2F_DCM_reference_file = T2F_DCM_DIR.files("*.dcm")[0]
 
-# now we write the segmentation files to .dcm
-# TODO adjust paths to resulting segmentation .dcm files
+# now we write the segmentation files to .dcm using the dicom series as reference
 T1N_DCM_segmentation_file = turbopath("TODO")
 T1C_DCM_segmentation_file = turbopath("TODO")
 T2W_DCM_segmentation_file = turbopath("TODO")
 T2F_DCM_segmentation_file = turbopath("TODO")
+
+
+nifti_to_dicom_itk(
+    input_file=T1N_NII_segmentation_file,
+    output_file=T1N_DCM_segmentation_file,
+    reference_dicom_dir=T1N_DCM_DIR,
+)
+nifti_to_dicom_itk(
+    input_file=T1C_NII_segmentation_file,
+    output_file=T1C_DCM_segmentation_file,
+    reference_dicom_dir=T1C_DCM_DIR,
+)
+nifti_to_dicom_itk(
+    input_file=T2W_NII_segmentation_file,
+    output_file=T2W_DCM_segmentation_file,
+    reference_dicom_dir=T2W_DCM_DIR,
+)
+nifti_to_dicom_itk(
+    input_file=T2F_NII_segmentation_file,
+    output_file=T2F_DCM_segmentation_file,
+    reference_dicom_dir=T2F_DCM_DIR,
+)
