@@ -45,7 +45,7 @@ T1C_file = T1C_file_List[0]
 T2W_file = T2W_file_List[0]
 T2F_file = T2F_file_List[0]
 
-# TODO do preprocessing and segmentation magic here
+# TODO do preprocessing and segmentation magic here; make sure the images are inverse-warped to native-space
 
 # TODO adjust paths to resulting segmentation files
 T1N_NII_segmentation_file = turbopath("TODO")
