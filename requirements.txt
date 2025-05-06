@@ -1,2 +1,2 @@
-auxiliary
+auxiliary>=0.2.0
 tqdm
